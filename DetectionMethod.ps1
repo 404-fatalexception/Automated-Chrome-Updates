@@ -1,3 +1,27 @@
+<#
+.SYNOPSIS
+    Detection Method
+
+.DESCRIPTION
+    Detects if the latest version of Chrome is installed, for use in System Center Configuration Manager
+    
+.PARAMETER none
+
+.EXAMPLE
+    DetectionMethod.ps1
+
+.Notes
+    FileName:    DetectionMethod.ps1
+    Author:      William Hamilton
+    Contact:     whamilton@zebra.com
+    Created:     2019-03-22
+    Updated:     
+
+    Version history:
+    1.0.0 - (2019-03-21) Initial release
+    
+#>
+
 $ChromeReleaseFeed = 'http://feeds.feedburner.com/GoogleChromeReleases'
 try {
     $Current = [version]((Get-Item (Get-ItemProperty 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\chrome.exe' -ErrorAction SilentlyContinue).'(Default)').VersionInfo).ProductVersion
