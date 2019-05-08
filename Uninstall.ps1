@@ -21,7 +21,7 @@
     1.0.0 - (2019-03-22) Initial release    
 #>
 
-Function Download-ChromeMSI{
+Function Get-LatestChromeMSI{
     Param([uri]$ChromeDownloadPath,[string]$ChromeDownloadFolder,[string]$ChromeSaveAsName)
     if($psversiontable.psversion.major -gt 2) {
         Write-Output "PS Version 3+"
@@ -57,7 +57,7 @@ $strChromeSaveAsName = 'googlechromestandaloneenterprise64.msi'
 $chromeMSI = """$strChromeDownloadFolder\$strChromeSaveAsName"""
 
 (Get-WmiObject -Class Win32_Product | Where-Object {$_.Name -match "Chrome"}).Version | ForEach-Object {& ${env:ProgramFiles(x86)}\Google\Chrome\Application\$_\Installer\setup.exe --uninstall --multi-install --chrome --system-level --force-uninstall}
-Download-ChromeMSI -ChromeDownloadPath $uriNewChromeURL -ChromeDownloadFolder $strChromeDownloadFolder -ChromeSaveAsName $strChromeSaveAsName
+Get-LatestChromeMSI -ChromeDownloadPath $uriNewChromeURL -ChromeDownloadFolder $strChromeDownloadFolder -ChromeSaveAsName $strChromeSaveAsName
 
 (Start-Process -filepath msiexec -argumentlist "/f $ChromeMSI /qn /norestart" -Wait -PassThru).ExitCode
 (Start-Process -filepath msiexec -argumentlist "/x $ChromeMSI /qn /norestart" -Wait -PassThru).ExitCode
