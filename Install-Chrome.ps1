@@ -36,7 +36,7 @@ Function Get-LatestChromeVersionViaRSS{
     
 }
 
-Function Download-ChromeMSI{
+Function Get-LatestChromeMSI{
     Param([uri]$ChromeDownloadPath,[string]$ChromeDownloadFolder,[string]$ChromeSaveAsName)
     if($psversiontable.psversion.major -gt 2) {
         Write-Output "PS Version 3+"
@@ -115,7 +115,7 @@ Write-Output "Chrome will download to: $strChromeDownloadFolder"
 
 if($CurrentlyInstalled -lt $LatestAvailable) {
     Write-Output "Current version less than Newest, downloading current"
-    Download-ChromeMSI -ChromeDownloadPath $uriNewChromeURL -ChromeDownloadFolder $strChromeDownloadFolder -ChromeSaveAsName $strChromeSaveAsName
+    Get-LatestChromeMSI -ChromeDownloadPath $uriNewChromeURL -ChromeDownloadFolder $strChromeDownloadFolder -ChromeSaveAsName $strChromeSaveAsName
     Install-Chrome
 }
 elseif ($CurrentlyInstalled -ge $LatestAvailable) {
