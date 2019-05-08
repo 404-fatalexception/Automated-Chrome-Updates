@@ -1,3 +1,26 @@
+<#
+.SYNOPSIS
+    Uninstallation of Google Chrome
+
+.DESCRIPTION
+    Uninstalls Google Chrome from Machine.  In order to handle dynamic updated Chrome, downloads latest MSI and uses it to uninstall.
+    
+.PARAMETER none
+
+.EXAMPLE
+    Uninstall.ps1
+
+.Notes
+    FileName:    Uninstall.ps1
+    Author:      William Hamilton
+    Contact:     whamilton@zebra.com
+    Created:     2019-03-22
+    Updated:     
+
+    Version history:
+    1.0.0 - (2019-03-22) Initial release    
+#>
+
 Function Download-ChromeMSI{
     Param([uri]$ChromeDownloadPath,[string]$ChromeDownloadFolder,[string]$ChromeSaveAsName)
     if($psversiontable.psversion.major -gt 2) {
